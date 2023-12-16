@@ -193,6 +193,9 @@ Area – North Maharashtra </p>
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
       }
+    else{
+  echo "connection successfull";
+    }
 
       // Query to fetch work experience data
       $workExperienceQuery = "SELECT * FROM work_experience";

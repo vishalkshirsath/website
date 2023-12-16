@@ -123,7 +123,7 @@ himself and the company advancement in the software engineering industry.
       </div>
     <!-- End Grid/Pricing tables -->
     </div>
-   <?php
+  <?php
 $con = mysqli_init();
 mysqli_ssl_set($con, NULL, NULL, "{path to CA cert}", NULL, NULL);
 mysqli_real_connect($con, "vishalshirsath-server.mysql.database.azure.com", "byjmdcqsuo", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
@@ -137,62 +137,53 @@ echo "Connected successfully";
 
 // Perform your database operations here
 
+// Query to fetch work experience data
+$workExperienceQuery = "SELECT * FROM work_experience";
+$workExperienceResult = mysqli_query($con, $workExperienceQuery);
+
+// Display work experience data
+if ($workExperienceResult && mysqli_num_rows($workExperienceResult) > 0) {
+    while ($row = mysqli_fetch_assoc($workExperienceResult)) {
+        echo "<div class='w3-container'>";
+        echo "<h4 class='w3-text-white'><b>" . $row['job_title'] . "</b></h4>";
+        echo '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $row['duration'] . '</h6>';
+        echo '<p>' . $row['description'] . '<br>Job Nature – ' . $row['job_nature'] . '<br></p>';
+        echo '<hr>';
+        echo '</div>';
+    }
+} else {
+    echo '<p>No work experience data available.</p>';
+}
+
+// Close the work experience query
+mysqli_free_result($workExperienceResult);
+
+// Education Section
+// Query to fetch education data
+$educationQuery = "SELECT * FROM education";
+$educationResult = mysqli_query($con, $educationQuery);
+
+// Display education data
+if ($educationResult && mysqli_num_rows($educationResult) > 0) {
+    while ($row = mysqli_fetch_assoc($educationResult)) {
+        echo '<div class="w3-container">';
+        echo '<h4 class="w3-opacity"><b>' . $row['institution'] . '</b></h4>';
+        echo '<h5 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $row['duration'] . '</h5>';
+        echo '<h6>' . $row['degree'] . '</h6>';
+        echo '<hr>';
+        echo '</div>';
+    }
+} else {
+    echo '<p>No education data available.</p>';
+}
+
+// Close the education query
+mysqli_free_result($educationResult);
+
 // Close the connection
 mysqli_close($con);
 ?>
 
-
-      // Query to fetch work experience data
-      $workExperienceQuery = "SELECT * FROM work_experience";
-      $workExperienceResult = $conn->query($workExperienceQuery);
-
-      // Display work experience data
-      if ($workExperienceResult->num_rows > 0) {
-          while ($row = $workExperienceResult->fetch_assoc()) {
-              echo "<div class="w3-container">";
-              echo "<h4 class="w3-text-white"><b>" . $row['job_title'] . "</b></h4>";
-              echo '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $row['duration'] . '</h6>';
-              echo '<p>' . $row['description'] . '<br>Job Nature – ' . $row['job_nature'] . '<br></p>';
-              echo '<hr>';
-              echo '</div>';
-          }
-      } else {
-          echo '<p>No work experience data available.</p>';
-      }
-
-      // Close the work experience query
-      $workExperienceResult->close();
-      ?>
-
-    </div>
-
-    <!-- Education Section -->
-    <div class="w3-padding-64 w3-content" id="education">
-      <h2 class="w3-text-light-white">Education</h2>
-      <hr style="width:200px" class="w3-opacity">
-
-      <?php
-      // Query to fetch education data
-      $educationQuery = "SELECT * FROM education";
-      $educationResult = $conn->query($educationQuery);
-
-      // Display education data
-      if ($educationResult->num_rows > 0) {
-          while ($row = $educationResult->fetch_assoc()) {
-              echo '<div class="w3-container">';
-              echo '<h4 class="w3-opacity"><b>' . $row['institution'] . '</b></h4>';
-              echo '<h5 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $row['duration'] . '</h5>';
-              echo '<h6>' . $row['degree'] . '</h6>';
-              echo '<hr>';
-              echo '</div>';
-          }
-      } else {
-          echo '<p>No education data available.</p>';
-      }
-
-      // Close the education query
-      $educationResult->close();
-      ?>
 
     </div>
 <div class="w3-padding-64 w3-content w3-text-grey" id="contact">

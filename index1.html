@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Vishal Shirsath</title>
+    <meta name="keywords" content="vishal shirsath, Software Developer, Ethical Hacker.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Vishal Shirsath software developer, ethical hacker ">
@@ -14,7 +15,6 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <?php include('connect.php'); ?>
     <style>
       html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
       </style>
@@ -123,63 +123,7 @@ himself and the company advancement in the software engineering industry.
       </div>
     <!-- End Grid/Pricing tables -->
     </div>
-    
-    <!-- Testimonials -->
-    <!-- <h2 class="w3-padding-24 w3-text-light-grey">My Reputation</h2>  
-    <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-    <p><span class="w3-large w3-margin-right">Chris Fox.</span> CEO at Mighty Schools.</p>
-    <p>John Doe saved us from a web disaster.</p><br>
-    
-    <img src="https://www.w3schools.com/w3images/avatar_g2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-    <p><span class="w3-large w3-margin-right">Rebecca Flex.</span> CEO at Company.</p>
-    <p>No one is better than John Doe.</p> -->
-  <!-- End About Section -->
-  <!-- </div> -->
-  
-  <!-- Portfolio Section -->
-<!--   <div class="w3-padding-64 w3-content" id="photos">
-    <h2 class="w3-text-light-white">Work Experience</h2>
-    <hr style="width:200px" class="w3-opacity">
-
-
-        <h2 class="w3-text-white w3-padding-16 "><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
-        <div class="w3-container">
-          <h4 class="w3-text-white"><b>Cyber Security Analyst</b></h4>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i> Aug - 2023 
-            <span class="w3-tag w3-teal w3-round">Current</span>
-            </h6>
-          <p> Working as Cyber Security Analyst from Aug-2023 to till date for Techsied Pvt.Ltd.
-          <br>Job Nature – Security Analyst.<br></p>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h4 class="w3-text-white"><b>Sales Representative</b></h4>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June- 2021 to July-2022 </h6>
-          <p>Working as Sales Representative from June-2021 to July-2022 for Synergy (I)
-Marketing Pvt. Ltd Company,to the Wipro Enterprises Pvt. Ltd payloar.
-<br>Job Nature – Sales Representative.<br>
-Area – North Maharashtra </p>
-          <hr>
-       
-        <h2 class="w3-text-grey w3-padding-16 w3-text-light-grey"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
-        <div class="w3-container">
-          <h4 class="w3-opacity"><b>Dr. Moonje Institute </b></h4>
-          <h5 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2023 - 2025</h5>
-          <h6>Master Degree (Appearing) </h6>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h4 class="w3-opacity"><b>K.K.Wagh Collage</b></h4>
-          <h5 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2020 - 2023</h5>
-          <h6>Bachelor Degree </h6>
-          <hr> -->
-        </div>
-<!--         <div class="w3-container">
-          <h4 class="w3-opacity"><b>Z.B.Patil Collage</b></h4>
-          <h5 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2018 - 2020</h5>
-          <h6>HSC</h6><hr>
-        </div> -->
-        <?php
+          <?php
       // Database configuration
      $servername = "vishal.mysql.database.azure.com"; 
      $username = "vishal";
@@ -191,11 +135,10 @@ Area – North Maharashtra </p>
 
       // Check connection
       if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-      }
-    else{
-  echo "connection successfull";
-    }
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Connected successfully";
+}
 
       // Query to fetch work experience data
       $workExperienceQuery = "SELECT * FROM work_experience";

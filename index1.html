@@ -134,7 +134,7 @@ mysqli_real_connect($conn, "vishalshirsath-server.mysql.database.azure.com", "by
 
       // Check connection
       if ($con->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $con->connect_error);
 } else {
     echo "Connected successfully";
 }
@@ -146,8 +146,8 @@ mysqli_real_connect($conn, "vishalshirsath-server.mysql.database.azure.com", "by
       // Display work experience data
       if ($workExperienceResult->num_rows > 0) {
           while ($row = $workExperienceResult->fetch_assoc()) {
-              echo '<div class="w3-container">';
-              echo '<h4 class="w3-text-white"><b>' . $row['job_title'] . '</b></h4>';
+              echo "<div class="w3-container">";
+              echo "<h4 class="w3-text-white"><b>" . $row['job_title'] . "</b></h4>";
               echo '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $row['duration'] . '</h6>';
               echo '<p>' . $row['description'] . '<br>Job Nature – ' . $row['job_nature'] . '<br></p>';
               echo '<hr>';

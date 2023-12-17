@@ -1,32 +1,7 @@
-<?php
-// Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Replace these values with your actual database credentials
-    try {
-        $conn = new PDO("sqlsrv:server = tcp:serverdatabas.database.windows.net,1433; Database = contact", "vishal", "Vigo@4242");
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        print("Error connecting to SQL Server.");
-        die(print_r($e));
-    }
-
-    // SQL Server Extension Sample Code:
-    $connectionInfo = array(
-        "UID" => "vishal",
-        "pwd" => "Vigo@4242",
-        "Database" => "contact",
-        "LoginTimeout" => 30,
-        "Encrypt" => 1,
-        "TrustServerCertificate" => 0
-    );
-    $serverName = "tcp:serverdatabas.database.windows.net,1433";
-    $conn = sqlsrv_connect($serverName, $connectionInfo);
-
-    // Create connection
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+<?php 
+$con = mysqli_init();
+mysqli_ssl_set($con,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
 
     // Get form data
     $name = $_POST["name"];
@@ -35,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST["message"];
 
     // Insert data into database
-    $sql = "INSERT INTO contacts (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$message')";
+    $sql = "INSERT INTO contacts ('name', 'email', 'subject', 'message') VALUES ('$name', '$email', '$subject', '$message')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Message sent successfully!";
@@ -45,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Close connection
     $conn = null;
-}
+
 ?>
 
 <!DOCTYPE html>

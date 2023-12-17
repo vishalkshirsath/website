@@ -33,12 +33,18 @@ $serverName = "tcp:serverdatabas.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 ?>
 
+<?php
+
+
+    $conn = mysqli_init();
+mysqli_ssl_set($con,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@4242", "contact", 3306, MYSQLI_CLIENT_SSL);
     // Create connection
     
     // Check connection
-   // if ($conn->connect_error) {
-     //   die("Connection failed: " . $conn->connect_error);
-    //}
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
     // Get form data
     $name = $_POST["name"];

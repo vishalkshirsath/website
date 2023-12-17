@@ -12,14 +12,12 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Replace these values with your actual database credentials
    
-    $servername = "vishal.mysql.database.azure.com"; // e.g., "localhost"
-$username = "vishal";
-$password = "Vigo@4242";
-$dbname = "info";
+    $conn = mysqli_init();
+mysqli_ssl_set($con,NULL,NULL, "{path to CA cert}", NULL, NULL);
+mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
+    
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);

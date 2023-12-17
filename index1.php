@@ -1,6 +1,6 @@
 <?php 
 $con = mysqli_init();
-mysqli_ssl_set($con,NULL,NULL, " DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_ssl_set($con,NULL,NULL, " DigiCertGlobalRootCA.crt(1).pem", NULL, NULL);
 mysqli_real_connect($conn, "vishalshirsath-server.mysql.database.azure.com", "byjmdcqsuo", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
 
     // Get form data

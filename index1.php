@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Replace these values with your actual database credentials
    
     $conn = mysqli_init();
-mysqli_ssl_set($con,NULL,NULL, "{path to CA cert}", NULL, NULL);
+mysqli_ssl_set($con,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
 mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
 
     // Create connection

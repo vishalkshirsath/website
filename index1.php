@@ -1,49 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-</head>
-<body>
-
 <?php
 // Process form submission
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Replace these values with your actual database credentials
-   
-  //  $conn = mysqli_init();
-// mysqli_ssl_set($con,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-//mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
+    try {
+        $conn = new PDO("sqlsrv:server = tcp:serverdatabas.database.windows.net,1433; Database = contact", "vishal", "Vigo@4242");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
+    }
 
-    //<?php
-// PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:serverdatabas.database.windows.net,1433; Database = contact", "vishal", "Vigo@4242");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+    // SQL Server Extension Sample Code:
+    $connectionInfo = array(
+        "UID" => "vishal",
+        "pwd" => "Vigo@4242",
+        "Database" => "contact",
+        "LoginTimeout" => 30,
+        "Encrypt" => 1,
+        "TrustServerCertificate" => 0
+    );
+    $serverName = "tcp:serverdatabas.database.windows.net,1433";
+    $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "vishal", "pwd" => "Vigo@4242", "Database" => "contact", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:serverdatabas.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-?>
-
-<?php
-
-
-    $conn = mysqli_init();
-mysqli_ssl_set($con,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@4242", "info", 3306, MYSQLI_CLIENT_SSL);
     // Create connection
-    
     // Check connection
     if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+        die("Connection failed: " . $conn->connect_error);
     }
 
     // Get form data
@@ -62,9 +44,18 @@ mysqli_real_connect($conn, "vishal.mysql.database.azure.com", "vishal", "Vigo@42
     }
 
     // Close connection
-    $conn->close();
+    $conn = null;
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<body>
 
 <h2>Contact Us</h2>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
